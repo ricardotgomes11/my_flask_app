@@ -15,7 +15,6 @@ logger = logging.getLogger(__name__)
 # Load environment variables from .env file
 load_dotenv()
 
-# Set OpenAI API key from environment variables
 openai.api_key = os.getenv("OPENAI_API_KEY")
 
 app = Flask(__name__)
@@ -37,7 +36,7 @@ async def generate_response(prompt):
             async with session.post('https://api.openai.com/v1/chat/completions', json=payload, headers=headers) as response:
                 if response.status == 200:
                     data = await response.json()
-                    return data["choices"][0]["message"]["content"]
+                    return data['choices'][0]['message']['content']
                 else:
                     logger.error(f"Request failed with status code {response.status}")
                     return f"Request failed with status code {response.status}"
