@@ -37,7 +37,7 @@ async def generate_response(prompt):
             async with session.post('https://api.openai.com/v1/chat/completions', json=payload, headers=headers) as response:
                 if response.status == 200:
                     data = await response.json()
-                    return data['choices'][0]['message']['content']
+                    return data["choices"][0]["message"]["content"]
                 else:
                     logger.error(f"Request failed with status code {response.status}")
                     return f"Request failed with status code {response.status}"
